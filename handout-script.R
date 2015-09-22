@@ -1,12 +1,10 @@
 
-
-
+\n
 ### Creating objects in R
 
 ### Vectors and data types
 
-
-
+\n
 ### Presentation of the survey data
 ## download.file("http://files.figshare.com/2236372/combined.csv",
 ##               "data/portal_data_joined.csv")
@@ -39,8 +37,7 @@ exprmt <- factor(c("treat1", "treat2", "treat1", "treat3", "treat1", "control",
                    "treat1", "treat2", "treat3"))
 table(exprmt)
 barplot(table(exprmt))
-
-
+\n
 ## The data.frame class
 example_data <- data.frame(animal=c("dog", "cat", "sea cucumber", "sea urchin"),
                            feel=c("furry", "furry", "squishy", "spiny"),
@@ -72,8 +69,6 @@ str(example_data)
 ### rows. Use it, in conjuction with `seq()` to create a new
 ### `data.frame` called `surveys_by_10` that includes every 10th row
 ### of the survey data frame starting at row 10 (10, 20, 30, ...)
+\n
 
-
-
-
-
+\n

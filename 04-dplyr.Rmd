@@ -6,7 +6,7 @@ author: Data Carpentry contributors
 
 ```{r, echo=FALSE, purl=FALSE, message = FALSE}
 source("setup.R")
-surveys <- read.csv("data/portal_data_joined.csv")
+surveys <- read.csv("data/surveys.csv")
 ```
 
 ------------
@@ -55,13 +55,13 @@ data frame, use `select()`. The first argument to this function is the data
 frame (`surveys`), and the subsequent arguments are the columns to keep.
 
 ```{r, results = 'hide', purl = FALSE}
-select(surveys, plot_id, species_id, weight)
+surveys_3_cols <- select(surveys, plot_id, species_id, weight)
 ```
 
 To choose rows, use `filter()`:
 
 ```{r, purl = FALSE}
-filter(surveys, year == 1995)
+surveys_1995 <- filter(surveys, year == 1995)
 ```
 
 ### Pipes

@@ -7,7 +7,7 @@ maintainers: [""]
 domain: Ecology
 topic: R for data analysis
 software: R
-dataurl:
+dataurl: https://github.com/iDigBio/2015-09-23-TDWG-R-ecology/tree/gh-pages/data
 status: Teaching
 ---
 

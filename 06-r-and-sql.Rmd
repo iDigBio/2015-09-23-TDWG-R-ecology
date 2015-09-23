@@ -93,21 +93,19 @@ head(result)
 
 > ## Challenge
 >
-> Write a query that gets counts of genus by plot type. If this seems to
+> Write a query that gets counts of genus by plot type. If this seems too
 > advanced, then get counts of genus by plot_id (eliminates one of the >joins)
 
 ### Answer
 
 ```{r genus by type, purl=FALSE}
-q <- "SELECT d.plot_type , c.genus, count(*)
-FROM
-(SELECT a.genus, b.plot
-FROM species a
-JOIN surveys b
-ON a.species_id = b.species_id) c
-JOIN plots d
-ON c.plot = d.plot_id
-GROUP BY d.plot_type,c.genus"
+q <- "SELECT p.plot_type, sp.genus, count(*)
+FROM species sp
+JOIN surveys sur
+ON sp.species_id = sur.species_id
+JOIN plots p
+ON sur.plot_id = p.plot_id
+GROUP BY p.plot_type, sp.genus"
 
 result <- dbGetQuery(conn,q)
 head(result)
@@ -128,8 +126,12 @@ this we'll get the range of dates from the database, sequence them by two and
 make new queries.
 
 ```{r Get years of data, purl=FALSE}
-yearRange <- dbGetQuery(conn,"SELECT min(year),max(year) FROM surveys")
-years <- seq(yearRange[,1],yearRange[,2],by=2)
+yearRange <- dbGetQuery(conn,"SELECT min(year) lower, max(year) upper
+                        FROM surveys")
+years <- seq(
+  as.numeric(yearRange$lower),
+  as.numeric(yearRange$upper),
+  by=2)
 ```
 
 Next we'll build our query string using the `paste()` function.
